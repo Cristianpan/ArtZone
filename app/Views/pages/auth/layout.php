@@ -28,6 +28,11 @@
 
 
     <script src="/assets/js/alertElement.min.js"></script>
+
+    <script>
+        localStorage.removeItem('cartItems');
+    </script>
+
     <?php $this->renderSection('js'); ?>
 </body>
 

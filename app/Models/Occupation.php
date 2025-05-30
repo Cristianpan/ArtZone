@@ -10,5 +10,5 @@ class Occupation extends Model
     protected $table            = 'occupations';
     protected $primaryKey       = 'occupationId';
     protected $returnType       = 'array';
-    protected $allowedFields    = ['type'];
+    protected $allowedFields    = ['occupationType'];
 }

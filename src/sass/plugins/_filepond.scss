@@ -6,11 +6,20 @@
     font-size: 1.5rem;
 }
 
+.filepond--list-scroller {
+    height: 100% !important;
+}
 .filepond--drop-label{
+    background-color: #f1f0ef;
+    border-radius: 1rem;
     label {
         font-size: 1.6rem;
     }
 }
 .filepond--credits{
     display: none;
+}
+
+.filepond--list-scroller[data-state=overflow]{
+    -webkit-mask: none;
 }

@@ -65,6 +65,7 @@ function setData(target) {
 
 async function sendData(e) {
   e.preventDefault();
+  removeErrorMessages();
   const { target: form } = e;
   const title = form.title.value;
   const description = form.description.value;
@@ -72,13 +73,13 @@ async function sendData(e) {
 
   const userId = document.querySelector("#userId").value;
 
-  personalBlock.id
+  const result = personalBlock.id
     ? await updatePersonalBlock(personalBlock, userId)
     : await createPersonalBlock(personalBlock, userId);
 
-  showModal();
-
-  e.target.reset();
+    if (result) {
+      e.target.reset();
+    }
 }
 
 async function updatePersonalBlock(personalBlock, userId) {
@@ -96,12 +97,19 @@ async function updatePersonalBlock(personalBlock, userId) {
   const response = await result.json();
 
   if (response.ok) {
-    createAlert(
-      "success",
-      "¡Actualización Exitosa!",
-      "Tu historia ha sido actualizada con éxito. Continua creando más para que todos te conozcan mejor"
-    );
+    createAlert("success", "¡Actualización Exitosa!", response.message);
     updateElementPersonalBlock(response.body);
+    showModal();
+    return true;
+  } else {
+    createAlert(
+      "error",
+      "¡Oops! Ha ocurrido un error al actualizar tu historia",
+      response.message
+    );
+
+    generateErrorMessages(response.body);
+    return false;
   }
 }
 
@@ -117,12 +125,18 @@ async function createPersonalBlock(personalBlock, userId) {
   const response = await result.json();
 
   if (response.ok) {
-    createAlert(
-      "success",
-      "¡Registro Exitoso!",
-      "Tu historia ha sido guardada con éxito. Continua creando más para que todos te conozcan mejor"
-    );
+    createAlert("success", "¡Registro Exitoso!", response.message);
     insertPersonalBlock(response.body);
+    showModal();
+    return true;
+  } else {
+    createAlert(
+      "error",
+      "¡Oops! Ha ocurrido un error al crear tu historia",
+      response.message
+    );
+    generateErrorMessages(response.body);
+    return false;
   }
 }
 
@@ -161,8 +175,35 @@ async function deletePersonalBlock(e) {
         .querySelector(`#block-${response.body.personalBlockId}`)
         .remove();
       swiper.update();
-    } 
+    } else {
+      createAlert(
+        "error",
+        "¡Oops ha ocurrido un error al eliminar tu historia!",
+        response.message
+      );
+    }
   }
+}
+
+let alerts = [];
+
+function generateErrorMessages(errorMessages) {
+  const form = document.querySelector(".modal-form");
+  for (const key in errorMessages) {
+    const inputReference = form[key];
+    const alert = document.createElement("div");
+    alert.classList.add("alert");
+    alert.classList.add("alert-danger");
+    alert.textContent = errorMessages[key];
+
+    alerts = [...alerts, alert];
+    inputReference.before(alert);
+  }
+}
+
+function removeErrorMessages() {
+  alerts.forEach((alert) => alert.remove());
+  alerts = []
 }
 
 function insertPersonalBlock({ personalBlockId, title, description }) {

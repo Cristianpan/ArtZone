@@ -6,18 +6,21 @@ use App\Validators\BaseValidation;
 class ArtItemValidation extends BaseValidation
 {
     protected $validationRules = [
+        'artItemFile' => 'required_files',
         'artStyleId' => 'required|integer',
         'artTypeId' => 'required|integer',
         'name' => 'required',
         'materials' => 'required',
         'shortDescription' => 'required',
         'description' => 'required',
-        'measurements' => 'required',
-        'localOrigin' => 'required',
-        'onSale' => 'required|integer',
+        'localOrigin' => 'required', 
+        'price' => 'required|numeric'
     ];
 
     protected $validationMessages = [
+        'artItemFile' => [
+            'required_files' => "La imagen de la obra es obligatoria" 
+        ],
         'artStyleId' => [
             'required' => 'La selección de estilo es obligatoria',
             'integer' => 'No existe el tipo de estilo',
@@ -38,15 +41,20 @@ class ArtItemValidation extends BaseValidation
         'description' => [
             'required' => 'La descripción es obligatoria',
         ],
-        'measurements' => [
-            'required' => 'Las medidas son obligatorias',
+        'price' => [
+            'required' => 'El precio de la obra es obligatorio',
+            'numeric' => 'El formato introducido no es correcto',
+        ],
+        'width' => [
+            'required' => 'La medida del ancho de la obra es obligatoria',
+            'numeric' => 'El formato introducido no es correcto',
+        ],
+        'height' => [
+            'required' => 'La medida del alto de la obra es obligatoria',
+            'numeric' => 'El formato introducido no es correcto',
         ],
         'localOrigin' => [
             'required' => 'El lugar de origen es obligatorio',
-        ],
-        'onSale' => [
-            'required' => 'La selección es obligatoria',
-            'integer' => 'No existe esa selección',
         ],
     ];
 }

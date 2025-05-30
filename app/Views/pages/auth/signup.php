@@ -2,7 +2,7 @@
 
 
 <?php $this->section("title") ?>
-<title>Iniciar Sesión | Art Zone</title>
+<title>Art Zone | Regístro</title>
 <?php $this->endSection() ?>
 
 

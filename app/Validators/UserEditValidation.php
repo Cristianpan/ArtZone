@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Validators;
+
+use App\Models\User;
 use App\Validators\BaseValidation;
+use App\Errors\InvalidDataInputException; 
 
 class UserEditValidation extends BaseValidation
 {
@@ -41,4 +44,15 @@ class UserEditValidation extends BaseValidation
             'required' => 'Su numero de tarjeta es obligatorio'
         ]
     ];
+
+    public function validateEmail(string $newEmail){
+        $user = (new User())->select('userId')->where('email', $newEmail)->first(); 
+
+        if ($user['userId'] != session()->get('user')['userId']) {
+            $this->validator->setError('email', "El correo ya ha sido registrado, porfavor ingrese otro"); 
+            throw new InvalidDataInputException('Correo registrado', $this->validator->getErrors()); 
+        
+        }
+
+    }
 }

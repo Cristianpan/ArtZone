@@ -18,46 +18,33 @@
 <?php $this->section("content") ?>
 
 <div class="profile">
-    <img class="profile__background" src="/assets/images/fondo.jpg">
-
-    <div class="profile__content">
-        <div class="profile__picture">
-            <img src="/assets/images/porfile.jpg">
-        </div>
-        <h3 class="profile__name">Lucía Méndez</h3>
-
-        <div class="profile__info-container">
-            <div class="profile__info">
-                <p class="profile__info-text profile__info-text--bolder">30</p>
-                <p class="profile__info-text">Creaciones</p>
-            </div>
-            <div class="profile__info">
-                <p class="profile__info-text profile__info-text--bolder">10</p>
-                <p class="profile__info-text">Disponible</p>
-            </div>
-        </div>
+    <?php if ($userData['imageBackground']) : ?>
+        <img class="profile__background" src="/api/files/load?file=<?= $userData['imageBackground'] ?>">
+    <?php endif ?>
+    <div class="profile__picture">
+        <?= view("components/imageProfile", ['user' => $userData]) ?>
     </div>
 </div>
 
-<div class="about container">
-    <h1 class="about__name">Lucía Méndez</h1>
-    <p class="about__job">Oficio</p>
-    <p class="about__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et aut alias odio qui ad ut
-        maiores ea iusto. Explicabo consequatur unde provident accusantium harum repudiandae amet ipsam enim. Atque,
-        quidem? si Lorem ipsum dolor sit amet consectetur adipisicing elit. Et aut alias odio qui ad ut
-        maiores ea iusto. Explicabo consequatur unde provident accusantium harum repudiandae amet ipsam enim. Atque,
-        quidem? si</p>
-</div>
+<section class="profile-data container">
+    <div class="profile__content">
 
-</div>
-
-<section class="container">
-    <?= view("components/personalBlocks") ?>
+        <h1 class="profile__name"><?= $userData['userName'] ?></h1>
+        <p class="profile__job"><?= $userData['occupation'] ?></p>
+    </div>
+    <div class="about">
+        <p class="about__description"><?= $userData['description'] ?></p>
+    </div>
 </section>
 
 <section class="container">
-    <h2 class="title-orange">Catálogo</h2>
-    <?= view("components/searchBar") ?>
-    <?= view("components/gallery") ?>
+    <?= view("components/personalBlocks", ['personalBlocks' => $userData['personalBlocks'] ?? []]) ?>
+</section>
+
+<section class="container catalog">
+    <?php if ($userData['artItems']) : ?>
+        <h2 class="catalog__title">Catálogo</h2>
+        <?= view("components/gallery", ['items' => $userData['artItems']]) ?>
+    <?php endif ?>
 </section>
 <?php $this->endSection() ?>

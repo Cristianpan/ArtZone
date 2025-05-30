@@ -6,6 +6,10 @@
     background-color: #fff;
 }
 
+.swiper-slide {
+    height: auto;
+}
+
 .swiper-button-next::after, .swiper-button-prev::after {
     font-size: 3rem;
     font-weight: bold;

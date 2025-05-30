@@ -13,9 +13,7 @@ import Swal from 'sweetalert2';
                     <h2 class="sweet__title sweet__title--${responseData.type}">${responseData.title}</h2>
                     <p class="sweet__text">${responseData.message}<p>
                 `, 
-                confirmButtonText: 'De Acuerdo'
-
-                
+                confirmButtonText: 'De Acuerdo'                
             })
         }, 5)
     }

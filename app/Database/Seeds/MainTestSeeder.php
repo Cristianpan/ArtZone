@@ -8,11 +8,8 @@ class MainTestSeeder extends Seeder
 {
     public function run()
     {
-        $this->call('UserSeeder');
-        $this->call('PersonalBlockSeeder');
         $this->call('OccupationSeeder');
         $this->call('ArtStyleSeeder');
-        $this->call('ArtItemSeeder');
         $this->call('ArtTypeSeeder');
     }
 }

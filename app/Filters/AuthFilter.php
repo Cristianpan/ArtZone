@@ -32,6 +32,10 @@ class AuthFilter implements FilterInterface
             if (!session()->has('user')) {
                 return redirect()->to("/login");
             }
+        } else if ($segment == 'login' || $segment == 'signup') {
+            if (session()->has('user')){
+                return redirect()->to("/");
+            }
         }
     }
 

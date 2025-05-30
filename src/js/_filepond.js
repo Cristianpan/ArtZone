@@ -21,8 +21,6 @@ FilePond.registerPlugin(
 
 export function createPond(input, config, name) {
   const pond = FilePond.create(input, {
-    labelIdle:
-      'Arrastra y suelta tu foto de perfil o  <u style="cursor:pointer;">Selecciona</u>',
     imagePreviewHeight: 240,
     imageResizeTargetWidth: 200,
     imageResizeTargetHeight: 200,
@@ -30,7 +28,7 @@ export function createPond(input, config, name) {
     labelFileTypeNotAllowed: "Archivo no valido",
     fileValidateTypeLabelExpectedTypes: `Se espera {allTypes}`,
     chunkUploads: true,
-    chunkSize: 100000,
+    chunkSize: 1000000,
     ...config,
     server: getServerOptions(name),
 

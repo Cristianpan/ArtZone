@@ -9,4 +9,4 @@ profileIcon.addEventListener('click', ()=> {
 searchButton.addEventListener('click', ()=> {
     const searchInput = document.querySelector('.search__input'); 
     searchInput.classList.toggle('search__input--active')
-})
+}); 

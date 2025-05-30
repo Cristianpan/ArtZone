@@ -12,13 +12,6 @@ class User extends Model
     protected $allowedFields    = ['userId', 'name', 'lastName', 'password', 'confirm', 'token', 'email'];
 
     protected $beforeInsert   = ['createUser'];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
 
 
     protected function createUser(array $data){
@@ -28,4 +21,33 @@ class User extends Model
 
         return $data; 
     } 
+
+    public function getUserData(String $userId){
+       $userData = $this->select("
+            users.userId,
+            name,
+            CONCAT(name, ' ',lastName) as userName, 
+            imageProfile as userImage, 
+            imageBackground, 
+            description, 
+            occupationType as occupation
+        ")
+        ->join('userDetails', 'userDetails.userId = users.userId', 'left')
+        ->join('occupations', 'occupations.occupationId = userDetails.occupationId', 'left')
+        ->find($userId);
+
+        $userData['personalBlocks'] = (new PersonalBlock())->where('userId', $userId)->findAll();
+        $userData['artItems'] = (new ArtItem())->select("
+            CONCAT(users.name, ' ',lastName) as autor, 
+            artItemId, 
+            image, 
+            shortDescription
+        ") 
+        ->join('users', 'users.userId = art_items.userId')
+        ->where('art_items.userId', $userId)
+        ->findAll();
+
+        return $userData; 
+
+    }
 }

@@ -12,10 +12,20 @@
     padding: 5rem;
 
     width: 100%;
-    height: auto;
-    min-height: 60vh;
+    height: 32.5rem;
     position: relative;
-    
+    background: rgba(v.$gray,0.5);
+
+    .image-profile {
+        &:hover {
+            background-color: lighten(v.$lightGray, 5);
+        }
+
+        &__symbol {
+            font-size: 5rem;
+        }
+    }
+
     &__background {
         position: absolute;
         top: 0;
@@ -24,53 +34,66 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
+        filter: brightness(0.9);
     }
-    
-    &__content {
-        z-index: 1;
+
+    &-data {
+        margin-top: 10rem;
     }
-    
+
     &__picture {
+        position: absolute;
+        bottom: -8rem;
         margin: 0 auto;
         border-radius: 50%;
         overflow: hidden;
-        width: 20rem;
-        @include m.tablet {
-            width: 30rem;
+        width: 22.5rem;
+        height: 22.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 100%;
+            height: 100%;
         }
+    }
+
+    &__job {
+        text-align: center;
+        font-size: 2.6rem;
+        line-height: 0;
+        margin-top: 1.5rem;
     }
 
     &__name {
-        font-size: 3rem;
-        margin: 2rem 0;
+        font-size: 3.6rem;
+        margin: 2rem 0 0;
         text-align: center;
-        color: v.$gray;
-
-        @include m.tablet {
-            font-size: 3.4rem;
-        }
+        color: v.$brown;
     }
-    
+
     &__info-container {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 2rem;
-        padding: 1rem 2rem; 
+        height: 7rem;
+        width: 25rem;
         margin: 0 auto;
 
-        background-color: v.$white;
+        background-color: lighten(v.$lightGray, 10);
         border-radius: 2rem;
+    }
+
+    &__info-text {
+        font-size: 1.2rem;
+        text-align: center;
 
         @include m.tablet {
-            gap: 5rem;
+            font-size: 1.4rem;
         }
 
-    }
-    
-    &__info-text{
-        font-size: 1.6rem;
-        text-align: center;
         &--bolder {
             font-size: 1.8rem;
             font-weight: 900;
@@ -80,21 +103,18 @@
 
 
 .about {
-    margin-top: 8rem; 
-    margin-bottom: 5rem;
-
-    &__name {
-        font-size: 6rem;
-        color: v.$brown;
-    }
-
-    &__job {
-        font-weight: 900;
-        margin: 2rem 0;
-    }
+    margin: 3rem auto;
 
     p {
-        font-size: 15pt;
-        margin-top: 8pt;
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
+.catalog {
+    &__title {
+        margin: 5rem 0 3rem 0;
+        font-size: 3.6rem;
+        color: v.$brown;
     }
 }

@@ -1,286 +1,146 @@
-@use "../base/mixins" as m;
-@use "../base/variables" as v;
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+@use '../components/table';
+@use "../components/payment";
 
-.cart {
-    width: 100%;
-    height: calc(100vh - 6rem);
-    display: flex;
-    flex-wrap: wrap;
+
+.cart-item {
     @include m.tablet {
-        flex-wrap: nowrap;
+        display: grid;
+        grid-template-columns: 3fr 2fr;
     }
-
-    &__items {
-        height: auto;
-
-        @include m.desktop {
-            flex: 1;
-            height: 88vh;
-            margin: auto;
-        }
-
-
-        &__title {
-            padding: 1rem;
-            width: 100%;
-
-            h1 {
-                font-size: 25pt;
-                padding-top: 2rem;
-                text-align: center;
-
-                @include m.desktop {
-                    text-align: left;
-                    font-size: 35pt;
-                    font-weight: 700;
-                    padding-left: 5rem;
-
-                }
-            }
-
-
-        }
-
-        &__shopping {
-            min-height: 60rem;
-            height: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            padding-right: 2rem;
-            padding-left: 2rem;
-
-
-
-            &__header {
-                display: flex;
-                border-bottom: 1px black solid;
-
-                p {
-                    font-size: 15pt;
-                    color: gray;
-                }
-
-                .cell1 {
-                    flex: 0.4;
-                }
-
-
-                .cell4 {
-                    flex: .9;
-                }
-
-
-                &__cell {
-                    flex: 1;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
-                }
-            }
-
-            &__rows {
-                width: 100%;
-
-                @include m.tablet {
-                    height: 80vh;
-                    overflow-y: auto;
-                }
-
-                &__row {
-                    border-bottom: 1px black solid;
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-
-                    @include m.desktop {
-                        height: auto;
-                    }
-
-
-                    &__cell1 {
-                        flex: 0.4;
-
-                        button {
-                            cursor: pointer;
-                            font-size: 10pt;
-                            transition: all 0.4s ease;
-                            padding: 6pt;
-
-
-                            @include m.tablet {
-                                font-size: 20pt;
-                                padding: 4rem;
-
-                            }
-
-                            &:hover {
-                                color: v.$brown;
-                            }
-                        }
-                    }
-
-                    &__cell4 {
-                        flex: 0.9;
-
-
-                        p {
-                            font-size: 8pt;
-
-                            @include m.tablet {
-                                font-size: 12pt;
-                                padding-left: 3rem;
-
-                            }
-                        }
-                    }
-
-                    &__cell {
-                        flex: 1;
-                        width: 100%;
-                        height: 100%;
-                        max-height: 40rem;
-
-                        p {
-                            font-size: 8pt;
-
-                            @include m.tablet {
-                                font-size: 12pt;
-                            }
-                        }
-
-                        &__img {
-                            width: 100%;
-                            height: 100%;
-                            padding: 2rem;
-                            overflow: hidden;
-
-
-                            img {
-                                max-height: 30rem;
-
-                                width: 100%;
-                                height: 100%;
-                                object-fit: cover;
-                                object-position: center center;
-                            }
-                        }
-
-                        &__title {
-                            font-weight: bold;
-                            padding-bottom: 2rem;
-                        }
-
-                        &__artist {
-                            padding-top: 2rem;
-                            font-weight: bold;
-                            color: v.$brown;
-                        }
-
-
-                    }
-                }
+    
+    &__container {
+        &--table {
+            @include m.tablet {
+                height: calc(100vh - 20rem);
+                overflow-y: auto;
             }
         }
     }
 
-    &__details {
-        padding: 8rem 1rem;
+    &__image-container {
+        margin: 0 auto;
+        width: 10rem;
+        max-height: 20rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    &__btn {
+        width: 4rem;
+    }
+
+    &__btn-close {
+        width: 3rem;
+    }
+
+    &__title {
+        margin: 3rem 0 1rem 0;
+        font-size: 3rem;
+    }
+
+    &__info {
+        font-size: 1.6rem;
+        margin: 1rem 0;
+        width: fit-content;
+
+        &--name {
+            font-size: 2.2rem;
+            color: darken(v.$orange, 20);
+            font-weight: bold;
+        }
+        
+        &--autor {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        &-container {
+            width: 20rem;
+        }
+
+        &-price {
+            width: 5rem;
+        }
+    }
+
+    &__table {
+        tr {
+            td {
+                border-bottom: solid 2px rgba(v.$dark, 0.8);
+            }
+        }
+    }
+}
+
+.payment {
+    background-color: lighten(v.$lightGray, 10);
+    padding: 3rem;
+    border-radius: 2rem;
+    margin: 3rem 0;
+    
+    @include m.tablet {
+        width: 85%;
+        float: right;
+        margin: 0;
+    }
+
+    &__header {
+        color: v.$blueGreen;
+        font-size: 2.4rem;
+        padding-bottom: 1.2rem;
+        margin-bottom: 2rem;
+        border-bottom: solid 2px v.$blueGreen;
+    }
+
+    &__label, &__info {
+        font-size: 1.8rem;
+    }
+
+    &__label {
+        width: fit-content;
+        text-align: start;
+        color: lighten(v.$dark, 20);
+
+        &--total {
+            font-weight: bold;
+            color: darken(v.$blueGreen,20);
+        }
+    }
+    
+    &__info {
+        color: lighten(v.$dark, 20);
+        &--total {
+            font-weight: bold;
+            color: darken(v.$blueGreen,20);
+        }
+    }
+
+    &__button {
         display: flex;
-
-
-        @include m.desktop {
-            flex: 0.6;
-            margin-top: 5rem;
-            height: 80%;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 4rem;
+        margin-top: 3rem;
+        background-color: v.$blueGreen;
+        color: v.$white;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 1rem;
+        transition: background-color 0.3s;
+        letter-spacing: 1px;
+        
+        &:hover{
+            background-color: darken(v.$blueGreen,20);
         }
-
-        &__content {
-            margin-bottom: 10rem;
-            margin: auto;
-            background-color: v.$gray;
-            width: 90%;
-            border-radius: 5%;
-            padding: 10% 10%;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-
-
-            &__header {
-                border-bottom: 1px v.$blueGreen solid;
-
-                h1 {
-                    color: v.$blueGreen;
-                    padding-bottom: 5%;
-                    font-size: 20pt;
-                }
-
-                img {
-                    width: 120px;
-                    padding-bottom: 1rem;
-                }
-            }
-
-            &__description {
-                position: relative;
-                padding: 10% 0%;
-                width: 100%;
-
-
-                p {
-                    font-size: 12pt;
-                    color: gray;
-                }
-
-                .title {
-                    padding: 3% 0%;
-                    width: 70%;
-                    float: left;
-                }
-
-                .number {
-                    padding: 3% 0%;
-                    float: left;
-                    width: 30%;
-                }
-
-                .total {
-                    margin-top: 10%;
-                    margin-bottom: 10%;
-                    border-bottom: 1px solid v.$blueGreen;
-
-                    p {
-                        font-weight: bold;
-                        font-size: 15pt;
-                        color: v.$blueGreen;
-
-
-                    }
-                }
-
-
-            }
-
-            a {
-                display: inline-block;
-                text-align: center;
-                width: 100%;
-
-                background-color: v.$blueGreen;
-                color: v.$white;
-                border: none;
-                padding: 2rem;
-                cursor: pointer;
-                margin: 2%;
-                flex: 1;
-                transition: all 0.4s ease;
-
-                &:hover {
-                    background-color: v.$brown;
-                    color: v.$white;
-                }
-            }
+        
+        &:disabled {
+            background-color: v.$blueGreen;
+            opacity: 0.8;
+            cursor: not-allowed;
         }
-
     }
 }

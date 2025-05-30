@@ -1,0 +1,12 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+@use '../components/order-card';
+
+
+.order {
+    &__title {
+        font-size: 3rem;
+        margin: 3rem 0;
+    }
+}
+

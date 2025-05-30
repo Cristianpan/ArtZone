@@ -12,16 +12,17 @@ function createFiles() {
     "imageBackground"
   );
   imageBackground.labelIdle =
-  'Arrastra y suelta tu foto de portada o  <u style="cursor:pointer;">Selecciona</u>';
+  'Arrastra y suelta tu foto de portada o <u style="cursor:pointer;">Selecciona</u>';
   imageBackground.imageCropAspectRatio = "18:9";
+  imageBackground.stylePanelLayout = "integrated"
 
   const imageProfile = createPond(
     document.querySelector("#imageProfile"),
     JSON.parse(document.querySelector("#imageProfileConfig").value),
     "imageProfile"
   );
-  imageProfile.stylePanelLayout = "circle";
+  imageProfile.stylePanelLayout = "integrated circle";
   imageProfile.imageCropAspectRatio = "1:1";
   imageProfile.labelIdle =
-    'Arrastra y suelta tu foto de perfil o  <u style="cursor:pointer;">Selecciona</u>';
+    'Arrastra y suelta tu foto de perfil o <u style="cursor:pointer;">Selecciona</u>';
 }
