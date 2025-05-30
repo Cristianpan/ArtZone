@@ -1,0 +1,218 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+@use '../plugins/swipper';
+@use '../plugins/filepond';
+@use "../components/alert-errors";
+
+.filepond--drop-label {
+    height: 53rem;
+}
+
+.item {
+    &__title {
+        margin: 2rem 0;
+        text-align: center;
+        color: v.$brown;
+
+        @include m.tablet {
+            display: none;
+        }
+
+        &--tablet {
+            display: none;
+            margin: 0 0 2rem 0;
+            color: v.$white;
+            text-align: left;
+
+            @include m.tablet {
+                display: block;
+            }
+        }
+    }
+}
+
+.item-form {
+    height: auto;
+    min-height: calc(100vh - 7.4rem);
+
+    @include m.tablet {
+        display: grid;
+        grid-template-columns: 55% 45%;
+    }
+
+    &__section {
+        width: 100%;
+        height: 100%;
+        padding: 5rem 3rem;
+
+        @include m.tablet {
+            height: calc(100vh - 7.4rem);
+        }
+
+        &--image {
+            padding: 0rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5rem;
+
+            @include m.tablet {
+                margin-bottom: 0;
+                overflow: hidden;
+            }
+        }
+
+        &--inputs {
+            background-color: v.$dark;
+
+            @include m.tablet {
+                padding: 3rem;
+                overflow: auto;
+            }
+        }
+    }
+
+    &__field {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+
+        &--select,
+        &--textarea {
+            height: auto;
+        }
+
+        &--filepond {
+            width: 90%;
+            max-width: 45rem;
+        }
+
+        &.mb-0 {
+            flex: 1;
+            margin-bottom: 0;
+        }
+    }
+
+    &__fields {
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+
+        &--2 {
+            @include m.grid(2, 1fr);
+            column-gap: 1rem;
+        }
+    }
+
+
+    &__label {
+        font-size: 1.6rem;
+        display: block;
+        margin-bottom: 1rem;
+        color: v.$brown;
+
+        &--checkbox {
+            color: v.$brown;
+            font-weight: bold;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        border-radius: 1rem;
+        padding: 1.3rem 2rem;
+        font-size: 1.6rem;
+        transition: border 0.2s;
+        background-color: lighten(v.$dark, 8);
+        color: v.$white;
+
+        &:focus-visible {
+            border: solid 0.1rem rgba(v.$brown, 0.8);
+        }
+
+        &--textarea {
+            outline: none;
+            resize: none;
+            height: 10rem;
+            padding-top: 2rem;
+
+            &-short {
+                padding-top: 2rem;
+                height: 8rem;
+            }
+        }
+
+        &--select {
+            border: none;
+            border-radius: 1.5rem;
+            width: 15rem;
+            padding: 0.6rem 0rem 0.6rem 1.5rem;
+            text-align: left;
+            font-size: 1.6rem;
+            color: v.$white;
+
+            background-image: url(/assets/images/arrow-icon-white.svg);
+            background-size: 1.2rem;
+            background-repeat: no-repeat;
+            background-position: 90% center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        &--checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            border: 0.2rem solid v.$brown;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 1rem;
+
+            &:checked {
+                background-color: lighten(v.$orange, 20);
+            }
+        }
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 3.5rem;
+    gap: 2rem;
+
+    &__button {
+        flex: 1 0 33%;
+        padding: 1.6rem 0;
+        text-align: center;
+        display: inline-block;
+        border-radius: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        cursor: pointer;
+        color: v.$white;
+        transition: background-color 0.3s;
+
+        &--submit, &--delete {
+            background-color: v.$brown;
+
+            &:hover {
+                background-color: darken(v.$brown, 20);
+            }
+        }
+
+        &--cancel {
+            background-color: transparent;
+            border: solid 0.2rem v.$brown;
+
+            &:hover {
+                background-color: lighten(v.$dark, 8);
+            }
+        }
+    }
+}

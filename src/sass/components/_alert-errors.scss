@@ -1,0 +1,14 @@
+@use '../base/variables' as v; 
+
+.alert {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-left: 0.5rem; 
+
+    &-danger {
+        color: v.$red;
+    }
+}
+

@@ -1,0 +1,22 @@
+@use "./node_modules/swiper/swiper-bundle.css";
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+
+.swiper-pagination-bullet {
+    background-color: #fff;
+}
+
+.swiper-slide {
+    height: auto;
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 3rem;
+    font-weight: bold;
+    color: v.$gray; 
+    display: none;
+
+    @include m.tablet {
+        display: block;
+    }
+}

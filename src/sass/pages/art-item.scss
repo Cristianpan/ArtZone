@@ -1,0 +1,203 @@
+@use "../base/mixins" as m;
+@use "../base/variables" as v;
+@use "../components/payment";
+
+.art-item {
+    @include m.tablet {
+        display: grid;
+        grid-template-columns: 57% 43%;
+    }
+
+    &__container {
+        height: auto;
+        min-height: calc(100vh - 7.4rem);
+
+        &--image {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &--data {
+            background-color: v.$dark;
+            color: v.$white;
+
+            padding: 2rem;
+
+            @include m.tablet {
+                padding: 5rem;
+            }
+        }
+    }
+
+    &__autor {
+        display: block;
+        position: absolute;
+        bottom: 4rem;
+        left: 0;
+        height: 4rem;
+        width: 25rem;
+        background-color: darken(v.$orange, 20);
+        color: v.$white;
+        padding-left: 2rem;
+        display: flex;
+        align-items: center;
+        
+        transition: background-color 0.3s, width 0.3s;
+        
+        &:hover {
+            width: 28rem;
+        }
+    }
+
+    &__content {
+        &--image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            width: 45rem;
+            max-height: 60rem;
+            overflow: hidden;
+            position: relative;
+            margin: 3rem 0;
+        }
+    }
+
+    &__header {
+        &-autor {
+            color: v.$blueGreen;
+            font-size: 2rem;
+            font-weight: lighter;
+            margin: 2rem 0;
+        }
+    }
+
+
+    &__price {
+        font-size: 3rem;
+        font-weight: lighter;
+        margin-bottom: 3rem;
+    }
+
+    &__navigation {
+        margin-bottom: 2rem;
+
+        @include m.tablet {
+            display: grid;
+            grid-template-columns: 40% 60%;
+        }
+    }
+
+    &__btn-navigation {
+        display: block;
+        text-align: start;
+        color: v.$white;
+        font-size: 2rem;
+        padding: 0 0 1.5rem 0;
+        border-bottom: 0.3rem solid v.$white;
+        position: relative;
+        width: 100%;
+        margin-bottom: 2rem;
+        cursor: pointer;
+        transition: color 0.2s;
+
+        &--active {
+            color: v.$blueGreen;
+        }
+
+        @include m.tablet {
+            margin-bottom: 0;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            height: 0.3rem;
+            transform: scale(0);
+            transition: transform 0.2s;
+        }
+
+        &--active::before {
+            transform: scale(1);
+            background-color: v.$blueGreen;
+        }
+    }
+
+    &__section {
+        display: none;
+        min-width: 25rem;
+        min-height: 15rem;
+
+        & * {
+            font-size: 1.8rem;
+        }
+
+        &--active {
+            display: block;
+        }
+    }
+
+    &__info {
+        font-size: 1.6rem;
+
+        &-detail {
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        &-details {
+            list-style-type: none;
+            padding: 0;
+        }
+    }
+
+    &__buttons {
+        margin-top: 8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 50rem;
+        height: 5rem;
+        border-radius: 1rem;
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+
+        &--buy {
+            background-color: v.$blueGreen;
+            color: v.$dark;
+
+            &:hover {
+                color: v.$white;
+                background-color: darken(v.$blueGreen,10);
+            }
+        }
+        
+        &--add-cart {
+            color: v.$white;
+            border: solid 2px v.$blueGreen;
+            
+            &:hover {
+                background-color: darken(v.$blueGreen,10);
+            }
+        }
+    }
+
+    &__image{
+        width: 100%;
+    }
+}

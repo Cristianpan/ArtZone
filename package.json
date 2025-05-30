@@ -1,0 +1,44 @@
+{
+  "name": "artzone",
+  "version": "1.0.0",
+  "description": "artzone",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "concurrently -n php,gulp -c magenta,cyan \"php spark serve\" \"gulp dev\"",
+    "build": "gulp build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "browser-sync": "^2.29.3",
+    "concurrently": "^8.2.1",
+    "cssnano": "^6.0.1",
+    "del": "^6.1.1",
+    "filepond": "^4.30.4",
+    "filepond-plugin-file-encode": "^2.1.10",
+    "filepond-plugin-file-validate-size": "^2.2.8",
+    "filepond-plugin-file-validate-type": "^1.2.8",
+    "filepond-plugin-image-crop": "^2.0.6",
+    "filepond-plugin-image-exif-orientation": "^1.0.11",
+    "filepond-plugin-image-preview": "^4.6.11",
+    "filepond-plugin-image-validate-size": "^1.2.7",
+    "gulp": "^4.0.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "postcss": "^8.4.27",
+    "sass": "^1.64.2",
+    "swiper": "^11.0.3",
+    "vinyl-named": "^1.1.0",
+    "webpack-stream": "^7.0.0"
+  },
+  "dependencies": {
+    "sweetalert2": "^11.10.1"
+  }
+}

@@ -1,0 +1,86 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+//variables
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  height: 4rem;
+  width: 4rem;
+  padding: 0 0.3rem;
+  
+  border-radius: 2.5rem;
+  background-color: lighten(v.$dark, 8);
+  
+  @include m.tablet {
+    overflow: hidden;
+    padding-left: 1rem;
+    max-width: 80rem;
+    width: 80%;
+  }
+
+  &__input {
+    visibility: hidden;
+    opacity: 0;
+    background-color: inherit;
+    color: v.$lightGray;
+    height: 100%;
+    width: 100%;
+    
+    position: absolute;
+    left: 0;
+    transition: opacity 0.3s;
+    
+    &--active { 
+      visibility: visible;    
+      display: block;
+      height: 5rem;
+      top: 7rem;
+      opacity: 1;
+    }
+    
+    @include m.tablet {
+      opacity: 1;
+      position: static;
+      visibility: visible;    
+    }
+
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      appearance: none;
+      display: none;
+    }
+  }
+
+  &__icon {
+    display: block;
+    width: 2.5rem; 
+    cursor: pointer;
+  }
+}
+
+/* .filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+
+  &__filter {
+    padding: 0.5rem 1rem;
+    flex: 1;
+    max-width: 15rem;
+    min-width: 10rem;
+    border: 0.1rem solid v.$brown;
+    border-radius: 3rem;
+    text-align: left;
+    font-size: 1.6rem;
+    color: lighten(v.$dark, 20);
+
+    background-image: url(/assets/images/arrow-icon.svg);
+    background-size: 1.8rem;
+    background-repeat: no-repeat;
+    background-position: 90% center;
+  }
+} */

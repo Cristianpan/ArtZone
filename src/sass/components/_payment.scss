@@ -1,0 +1,123 @@
+@use "../base/variables" as v;
+@use '../base/mixins' as m;
+@use '../components/modal';
+@use '../components/alert-errors';
+
+.payment {
+  width: 100%;
+  background-color: v.$dark;
+  padding: 5rem;
+
+  &__price {
+    font-size: 2.2rem;
+    color: v.$lightGreen;
+    font-weight: normal;
+    margin-bottom: 3rem;
+  }
+
+  &-form {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 70rem;
+
+    &__section {
+      width: 100%;
+      height: auto;
+      margin-bottom: 3rem;
+
+      &--grid {
+        @include m.telefono {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-auto-flow: dense;
+          column-gap: 2rem
+        }
+
+        @include m.tablet {
+          grid-template-columns: 2fr 2fr 1fr;
+        }
+      }
+    }
+
+    &__field {
+      width: 100%;
+
+      &--grid-1-3 {
+        @include m.telefono {
+          grid-column: 1 / 3;
+        }
+      }
+    }
+
+    &__fields {
+      @include m.tablet {
+        @include m.grid(2, 1fr);
+        column-gap: 2rem;
+      }
+    }
+
+    width: 100%;
+
+    &__field {
+      height: auto;
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    &__label {
+      display: block;
+      font-size: 1.6rem;
+      margin-bottom: 0.7rem;
+      margin-left: 0.5rem;
+    }
+
+    &__input {
+      padding: 1rem 2rem;
+      font-size: 1.6rem;
+      width: 100%;
+      border: solid 2px v.$lightGray;
+      border-radius: 1rem;
+
+      transition: border 0.1s;
+
+      &--textarea {
+        height: 10rem;
+      }
+
+      &:focus-visible {
+        border: solid 2px v.$blueGreen;
+      }
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+    @include m.tablet {
+
+      gap: 4rem;
+    }
+
+    &__button {
+      flex: 1;
+      padding: 1.6rem 0;
+      text-align: center;
+      display: inline-block;
+      border-radius: 1rem;
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      background-color: v.$blueGreen;
+      color: v.$white;
+
+      transition: background-color 0.3s;
+
+      &:hover {
+        color: v.$white;
+        background-color: darken(v.$blueGreen, 10);
+      }
+    }
+  }
+}

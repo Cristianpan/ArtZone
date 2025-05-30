@@ -1,0 +1,120 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+
+.order-card {
+    background-color: lighten(v.$lightGray, 10);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    
+    &:last-of-type {
+        margin-bottom: 8rem;
+    }
+
+    &__title {
+        font-size: 2rem;
+        color: v.$dark;
+        margin: 1rem 0;
+        font-weight: 5000;
+    }
+
+    &__body {
+        padding-bottom: 1.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 0.1rem solid v.$gray;
+
+        &--none {
+            display: none;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    &__text {
+        font-size: 1.6rem;
+        & span {
+            font-weight: 500;
+        }
+    }
+
+    &__button {
+        background-color: v.$orange;
+        padding: 0.8rem;
+        border-radius: 0.8rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: darken(v.$orange, 0.3s);
+        }
+    }
+
+    &__product {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 2rem;
+        row-gap: 1rem;
+        border-bottom: 0.1rem solid v.$gray;
+        margin-bottom: 1rem;
+        padding-bottom: 2rem;
+
+        &-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 10rem;
+            max-width: 20rem;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
+
+        &-title {
+            font-weight: bold;
+        }
+        
+        &-autor {
+            color: darken(v.$orange, 20);
+            font-weight: bold;
+        }
+        
+        &-data &-price {
+            color: darken(v.$blueGreen, 30);
+            font-size: 2.6rem !important;
+        }
+
+
+        &__shipping-details {
+            border-bottom: 0.1rem solid v.$gray;
+            margin-bottom: 1rem;
+            padding: 1rem;
+        }
+    }
+
+    &__shipping-container {
+        @include m.telefono {
+            @include m.grid(3, 1fr);
+            gap: 1rem;
+        }
+        @include m.tablet {
+            @include m.grid(3, 1fr);
+        }
+    }
+
+    &__shipping-detail {
+        & span {
+            font-weight: 500;
+        }
+    }
+
+
+}

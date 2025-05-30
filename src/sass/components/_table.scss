@@ -1,0 +1,19 @@
+@use '../base/variables' as v; 
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    &__td {
+        padding: 1rem;
+    }
+
+    &__td, &__th {
+        text-align: center;
+    }
+
+    &__th {
+        padding: 1rem;
+        font-size: 2rem;
+        font-weight: normal;
+        border-bottom: solid 2px rgba(v.$dark, 0.8);  
+    }
+}

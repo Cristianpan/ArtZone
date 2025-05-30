@@ -1,0 +1,146 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+@use '../components/table';
+@use "../components/payment";
+
+
+.cart-item {
+    @include m.tablet {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+    }
+    
+    &__container {
+        &--table {
+            @include m.tablet {
+                height: calc(100vh - 20rem);
+                overflow-y: auto;
+            }
+        }
+    }
+
+    &__image-container {
+        margin: 0 auto;
+        width: 10rem;
+        max-height: 20rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    &__btn {
+        width: 4rem;
+    }
+
+    &__btn-close {
+        width: 3rem;
+    }
+
+    &__title {
+        margin: 3rem 0 1rem 0;
+        font-size: 3rem;
+    }
+
+    &__info {
+        font-size: 1.6rem;
+        margin: 1rem 0;
+        width: fit-content;
+
+        &--name {
+            font-size: 2.2rem;
+            color: darken(v.$orange, 20);
+            font-weight: bold;
+        }
+        
+        &--autor {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        &-container {
+            width: 20rem;
+        }
+
+        &-price {
+            width: 5rem;
+        }
+    }
+
+    &__table {
+        tr {
+            td {
+                border-bottom: solid 2px rgba(v.$dark, 0.8);
+            }
+        }
+    }
+}
+
+.payment {
+    background-color: lighten(v.$lightGray, 10);
+    padding: 3rem;
+    border-radius: 2rem;
+    margin: 3rem 0;
+    
+    @include m.tablet {
+        width: 85%;
+        float: right;
+        margin: 0;
+    }
+
+    &__header {
+        color: v.$blueGreen;
+        font-size: 2.4rem;
+        padding-bottom: 1.2rem;
+        margin-bottom: 2rem;
+        border-bottom: solid 2px v.$blueGreen;
+    }
+
+    &__label, &__info {
+        font-size: 1.8rem;
+    }
+
+    &__label {
+        width: fit-content;
+        text-align: start;
+        color: lighten(v.$dark, 20);
+
+        &--total {
+            font-weight: bold;
+            color: darken(v.$blueGreen,20);
+        }
+    }
+    
+    &__info {
+        color: lighten(v.$dark, 20);
+        &--total {
+            font-weight: bold;
+            color: darken(v.$blueGreen,20);
+        }
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 4rem;
+        margin-top: 3rem;
+        background-color: v.$blueGreen;
+        color: v.$white;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 1rem;
+        transition: background-color 0.3s;
+        letter-spacing: 1px;
+        
+        &:hover{
+            background-color: darken(v.$blueGreen,20);
+        }
+        
+        &:disabled {
+            background-color: v.$blueGreen;
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
+    }
+}

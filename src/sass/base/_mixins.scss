@@ -1,0 +1,90 @@
+@use 'variables' as v;
+
+/** Media Queries **/
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+
+@mixin grid($columnas, $espaciado ) {
+    display: grid;
+    gap: $espaciado;
+    grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin clip-text($maxLines, $orient: vertical) {
+    display: -webkit-box;
+    -webkit-line-clamp: $maxLines;
+    -webkit-box-orient: $orient;
+    overflow: hidden;
+}
+
+@mixin create-input($height, $color, $bg, $mb: 1rem, $bordercolor: $bg) {
+    position: relative;
+    height: $height;
+    margin: 0 auto;
+    margin-bottom: $mb;
+
+    &--select {
+        height: auto;
+    }
+
+    &--textarea {
+        height: auto;
+    }
+
+    &>label {
+        position: absolute;
+        top: 0.5rem;
+        right: 1.5rem;
+        font-size: 1.6rem;
+        display: block;
+        transition: color 0.3s;
+        color: $color;
+        font-weight: 500;
+    }
+
+    & >input,
+    & >textarea {
+        height: 100%;
+        width: 100%;
+        border-radius: 1rem;
+        padding: 0.5rem 2rem 0 2rem;
+        font-size: 1.6rem;
+        transition: border 0.2s;
+        background-color: $bg;
+        border-radius: 0.1rem solid $bordercolor;
+
+        &:focus-visible~.profile-form__label {
+            color: darken($color, 10);
+        }
+
+        &:focus-visible {
+            border: solid 0.1rem darken($bordercolor, 20);
+        }
+
+    }
+
+    & > textarea {
+        outline: none;
+        border: none;
+        padding-top: 2rem;
+        resize: none;
+        height: 10rem;
+    }
+
+
+}
